@@ -1,0 +1,1325 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\includegraphics[width=1\textwidth]{encabezado_utvam (1).png}
+\vspace{0.2cm}
+{\small CÁLCULO IV}
+\end{center}
+
+\vspace{2cm}
+\begin{center}
+{\Large \textbf{Funciones de varias variables}}
+\end{center}
+
+\vspace{2.5cm}
+\begin{center}
+{\Large \textbf{Ejercicios}}
+\end{center}
+
+\vspace{3cm}
+\begin{center}
+{\small \textbf{INTEGRANTES DEL EQUIPO:}}
+\end{center}
+
+\vspace{0.1cm}
+\begin{center}
+{\small 253110061 - López Lemus Glynnes Eileen}
+\end{center}
+
+\vspace{0.1cm}
+\begin{center}
+{\small 253110509 - Rodriguez Martinez Carlos Eduardo}
+\end{center}
+
+\vspace{0.1cm}
+\begin{center}
+{\small 253110366 - Salinas Sanchez Javier}
+\end{center}
+
+\vspace{0.1cm}
+\begin{center}
+{\small 253110017 - Roque Ubaldo Valeria}
+\end{center}
+
+\vspace{0.1cm}
+
+\begin{center}
+{\small \textbf{GRUPO: TID-401}}
+\end{center}
+
+\vspace{0.1cm}
+\begin{center}
+{\small \textbf{Docente: Rubén Ramírez Gómez}}
+\end{center}
+
+\vfill
+\begin{flushright}
+{\small SEPTIEMBRE, 2026}
+\end{flushright}
+
+\newpage
+
+\section{Introducción}
+
+El presente documento contiene el análisis y desarrollo de diferentes
+problemas relacionados con funciones de varias variables, superficies
+en el espacio tridimensional, vectores, ecuaciones paramétricas y
+representación gráfica mediante Wolfram Mathematica.
+
+El trabajo se divide en cuatro problemas principales:
+
+\begin{enumerate}
+    \item Optimización de costos en servidores ``Serverless''.
+    \item Raycasting manual y determinación del punto de impacto.
+    \item Movimiento de un personaje entre dos puntos del espacio.
+    \item Reconstrucción matemática de una sonda espacial mediante
+    superficies cuadráticas.
+\end{enumerate}
+
+En cada problema se muestran las fórmulas utilizadas, las sustituciones,
+las operaciones algebraicas y los resultados obtenidos.
+
+
+\section{Optimización de Costos en Servidores ``Serverless''}
+
+\subsection{Planteamiento del problema}
+
+Una empresa de desarrollo de software utiliza funciones Serverless,
+como AWS Lambda, para procesar imágenes.
+
+El costo mensual depende de dos factores:
+
+\begin{itemize}
+    \item $n$: número de ejecuciones, expresado en millones.
+    \item $t$: tiempo promedio de ejecución por proceso, expresado en segundos.
+\end{itemize}
+
+La función proporcionada en el problema es:
+
+\[\boxed{C(n,t)=0.000016nt}\]
+
+donde $C$ representa el costo mensual en dólares.
+
+
+\subsection{1. Identificación de variables}
+
+Las variables independientes son:
+
+\[\boxed{n \text{ y } t}\]
+
+Esto se debe a que el número de ejecuciones y el tiempo promedio
+pueden cambiar y determinar el costo final.
+
+La variable dependiente es:
+
+\[\boxed{C}\]
+
+porque el costo depende directamente de los valores de $n$ y $t$.
+
+Por lo tanto:
+
+\[\boxed{C=C(n,t)}\]
+
+La respuesta puede expresarse de la siguiente manera:
+
+\begin{quote}
+Las variables independientes son $n$, que representa el número de
+ejecuciones en millones, y $t$, que representa el tiempo promedio
+de ejecución en segundos. La variable dependiente es $C$, que
+representa el costo mensual en dólares, ya que su valor depende
+de $n$ y $t$.
+\end{quote}
+
+
+\subsection{2. Determinación del dominio}
+
+El problema establece las siguientes restricciones.
+
+Para el tiempo de ejecución:
+
+\[0.1\leq t\leq900\]
+
+Para el número de ejecuciones:
+
+\[n\geq0\]
+
+Por lo tanto, el dominio es:
+
+\[\boxed{D=\left\{(n,t)\in\mathbb{R}^2:n\geq0,\quad0.1\leq t\leq900\right\}}\]
+
+También puede escribirse como:
+
+\[\boxed{D=[0,\infty)\times[0.1,900]}\]
+
+
+\subsection{3. Determinación del rango}
+
+La función es:
+
+\[C(n,t)=0.000016nt\]
+
+Como:
+
+\[n\geq0\]
+
+y:
+
+\[t>0\]
+
+entonces:
+
+\[C\geq0\]
+
+El costo mínimo se obtiene cuando:
+
+\[n=0\]
+
+Sustituyendo:
+
+\[C(0,t)=0.000016(0)(t)\]
+
+\[C=0\]
+
+Por otra parte, el problema no establece un límite superior para $n$.
+Por lo tanto, el costo puede crecer indefinidamente.
+
+Así, el rango es:
+
+\[\boxed{R=[0,\infty)}\]
+
+
+\subsection{4. Representación tabular}
+
+La tabla proporcionada en el ejercicio contiene los siguientes valores:
+
+\begin{table}[H]
+\centering
+\caption{Costos mensuales}
+\begin{tabular}{c|ccc}
+\toprule
+$n\backslash t$ & $1$ s & $5$ s & $10$ s\\
+\midrule
+$10$  & $0.16$ & $0.80$ & $1.60$\\
+$100$ & $1.60$ & ? & $16.00$\\
+$500$ & ? & $40.00$ & ?\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Existe una inconsistencia en el enunciado.
+
+La fórmula escrita es:
+
+\[C(n,t)=0.000016nt\]
+
+Sin embargo, los valores proporcionados en la tabla corresponden a:
+
+\[\boxed{C(n,t)=0.016nt}\]
+
+Por ejemplo:
+
+\[0.016(10)(1)=0.16\]
+
+\[0.016(10)(5)=0.80\]
+
+\[0.016(10)(10)=1.60\]
+
+Por lo tanto, para completar la tabla de acuerdo con los valores
+que aparecen en el ejercicio se utilizará:
+
+\[\boxed{C(n,t)=0.016nt}\]
+
+\subsubsection{Cálculo de $C(100,5)$}
+
+Utilizamos:
+
+\[C=0.016nt\]
+
+Sustituimos:
+
+\[C=0.016(100)(5)\]
+
+Multiplicamos:
+
+\[100(5)=500\]
+
+Entonces:
+
+\[C=0.016(500)\]
+
+Finalmente:
+
+\[\boxed{C=8.00}\]
+
+\subsubsection{Cálculo de $C(500,1)$}
+
+\[C=0.016(500)(1)\]
+
+\[C=0.016(500)\]
+
+\[\boxed{C=8.00}\]
+
+
+\subsubsection{Cálculo de $C(500,10)$}
+
+\[C=0.016(500)(10)\]
+
+Primero:
+
+\[500(10)=5000\]
+
+Después:
+
+\[C=0.016(5000)\]
+
+Por lo tanto:
+
+\[\boxed{C=80.00}\]
+
+
+\subsection{Tabla completa}
+
+La tabla completa queda:
+
+\begin{table}[H]
+\centering
+\caption{Tabla de costos completa}
+\begin{tabular}{c|ccc}
+\toprule
+$n\backslash t$ & $1$ s & $5$ s & $10$ s\\
+\midrule
+$10$  & $0.16$ & $0.80$ & $1.60$\\
+$100$ & $1.60$ & $8.00$ & $16.00$\\
+$500$ & $8.00$ & $40.00$ & $80.00$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Por lo tanto, los valores faltantes son:
+
+\[\boxed{8.00,\quad 8.00,\quad 80.00}\]
+
+\subsection{5. Análisis gráfico y conceptual}
+
+El problema pregunta qué sucede si el tiempo de ejecución se reduce
+a la mitad.
+
+El tiempo nuevo sería:
+
+\[t_{\text{nuevo}}=\frac{t}{2}\]
+
+La función original es:
+
+\[C=kn t\]
+
+donde $k$ representa la constante de proporcionalidad.
+
+Sustituyendo el nuevo tiempo:
+
+\[C_{\text{nuevo}}=kn\left(\frac{t}{2}\right)\]
+
+Por lo tanto:
+
+\[C_{\text{nuevo}}=\frac{k}{2}nt\]
+
+Esto significa que el costo también se reduce a la mitad.
+
+Gráficamente, la superficie presenta una menor pendiente respecto
+al eje $n$.
+
+Por lo tanto, la respuesta correcta es:
+
+\[\boxed{\text{B) La superficie se vuelve más plana respecto al eje }n}\]
+
+
+\section{Raycasting Manual -- El Impacto del Proyectil}
+
+\subsection{Planteamiento}
+
+El proyectil parte del origen:
+
+\[O=(0,0,0)\]
+
+y se dispara en dirección al punto:
+
+\[P=(2,2,2)\]
+
+La pared está determinada por el plano:
+
+\[2x+2y+x=4\]
+
+En este documento se utilizará también la forma:
+
+\[2x+2y+z=4\]
+
+ya que es la forma habitual de un plano tridimensional y produce
+el mismo punto de impacto para la trayectoria considerada.
+
+
+\subsection{1. Vector dirección}
+
+El vector dirección se obtiene mediante:
+
+\[\vec{v}=P-O\]
+
+Sustituyendo:
+
+\[\vec{v}=(2,2,2)-(0,0,0)\]
+
+Restamos componente por componente:
+
+\[\vec{v}=(2-0,2-0,2-0)\]
+
+Por lo tanto:
+
+\[\boxed{\vec{v}=(2,2,2)}\]
+
+\subsection{2. Ecuación paramétrica de la trayectoria}
+
+La ecuación de una recta en el espacio es:
+
+\[\vec{r}(\lambda)=\vec{r}_0+\lambda\vec{v}\]
+
+Como:
+
+\[\vec{r}_0=(0,0,0)\]
+
+y:
+
+\[\vec{v}=(2,2,2)\]
+
+entonces:
+
+\[\vec{r}(\lambda)=(0,0,0)+\lambda(2,2,2)\]
+
+Por lo tanto:
+
+\[\boxed{\vec{r}(\lambda)=(2\lambda,2\lambda,2\lambda)}\]
+
+En forma de ecuaciones:
+
+\[\boxed{
+\begin{cases}
+x=2\lambda\\
+y=2\lambda\\
+z=2\lambda
+\end{cases}
+}
+\]
+
+
+\subsection{3. Cálculo del punto de impacto}
+
+Utilizamos el plano:
+
+\[2x+2y+z=4\]
+
+Sustituimos:
+
+\[x=2\lambda\]
+
+\[y=2\lambda\]
+
+\[z=2\lambda\]
+
+Entonces:
+
+\[2(2\lambda)+2(2\lambda)+(2\lambda)=4\]
+
+Desarrollando:
+
+\[4\lambda+4\lambda+2\lambda=4\]
+
+Sumando:
+
+\[10\lambda=4\]
+
+Despejamos:
+
+\[\lambda=\frac{4}{10}\]
+
+\[\boxed{\lambda=0.4}\]
+
+Ahora sustituimos en las ecuaciones de la trayectoria.
+
+Para $x$:
+
+\[x=2(0.4)=0.8\]
+
+Para $y$:
+
+\[y=2(0.4)=0.8\]
+
+Para $z$:
+
+\[z=2(0.4)=0.8\]
+
+Por lo tanto, el punto de impacto es:
+
+\[\boxed{I=(0.8,0.8,0.8)}\]
+
+También puede expresarse como:
+
+\[\boxed{I=\left(\frac45,\frac45,\frac45\right)}\]
+
+\subsection{4. Comprobación}
+
+Sustituimos el punto obtenido en el plano:
+
+\[2(0.8)+2(0.8)+0.8\]
+
+\[=1.6+1.6+0.8\]
+
+\[=4\]
+
+Por lo tanto:
+
+\[\boxed{2x+2y+z=4}\]
+
+y se confirma que el punto pertenece al plano.
+
+
+\section{Movimiento de un Personaje}
+
+\subsection{Planteamiento}
+
+El personaje comienza en:
+
+\[A=(2,1,0)\]
+
+y debe desplazarse hasta:
+
+\[B=(5,7,3)\]
+
+\subsection{1. Vector de movimiento}
+
+El vector que va de $A$ hacia $B$ se obtiene mediante:
+
+\[\vec{AB}=B-A\]
+
+Sustituyendo:
+
+\[\vec{AB}=(5,7,3)-(2,1,0)\]
+
+Restamos:
+
+\[\vec{AB}=(5-2,7-1,3-0)\]
+
+\[\boxed{\vec{AB}=(3,6,3)}\]
+
+\subsection{2. Ecuación paramétrica de la trayectoria}
+
+Utilizamos:
+
+\[\vec{r}(t)=A+t(B-A)\]
+
+Sustituyendo:
+
+\[\vec{r}(t)=(2,1,0)+t(3,6,3)\]
+
+Distribuyendo $t$:
+
+\[\boxed{\vec{r}(t)=(2+3t,1+6t,3t)}\]
+
+Por componentes:
+
+\[\boxed{
+\begin{cases}
+x=2+3t\\
+y=1+6t\\
+z=3t
+\end{cases}
+}\]
+
+Para recorrer únicamente el segmento entre $A$ y $B$:
+
+\[\boxed{0\leq t\leq1}\]
+
+\subsection{3. Comprobación de los extremos}
+
+Cuando:
+
+\[t=0\]
+
+obtenemos:
+
+\[x=2+3(0)=2\]
+
+\[y=1+6(0)=1\]
+
+\[z=3(0)=0\]
+
+Por lo tanto:
+
+\[\vec{r}(0)=(2,1,0)=A\]
+
+Cuando:
+
+\[t=1\]
+
+obtenemos:
+
+\[x=2+3=5\]
+
+\[y=1+6=7\]
+
+\[z=3\]
+
+Por lo tanto:
+
+\[\vec{r}(1)=(5,7,3)=B\]
+
+Esto confirma que la trayectoria es correcta.
+
+\subsection{4. Posición después de recorrer el 80\%}
+
+El porcentaje recorrido es:
+
+\[80\%=0.80\]
+
+Por lo tanto:
+
+\[t=0.8\]
+
+Usamos:
+
+\[\vec{r}(t)=(2+3t,1+6t,3t)\]
+
+
+\subsubsection{Coordenada $x$}
+
+\[x=2+3(0.8)\]
+
+\[x=2+2.4\]
+
+\[\boxed{x=4.4}\]
+
+\subsubsection{Coordenada $y$}
+
+\[y=1+6(0.8)\]
+
+\[y=1+4.8\]
+
+\[\boxed{y=5.8}\]
+
+\subsubsection{Coordenada $z$}
+
+\[z=3(0.8)\]
+
+\[\boxed{z=2.4}\]
+
+Por lo tanto, después de recorrer el 80\% del camino:
+
+\[\boxed{P=(4.4,5.8,2.4)}\]
+
+\section{Operación Reconstrucción: Sonda Espacial Corrupta}
+
+\subsection{Objetivo}
+
+Se tienen las ecuaciones generales de cuatro partes de una sonda
+espacial.
+
+El objetivo es transformar cada ecuación a su forma estándar,
+identificar la superficie correspondiente y determinar su centro
+o vértice.
+
+Las cuatro superficies son:
+
+\begin{enumerate}
+    \item Módulo de Energía (Base).
+    \item Cápsula de Tripulación (Centro).
+    \item Antena de Comunicaciones (Superior).
+    \item Núcleo de Procesamiento (Punta).
+\end{enumerate}
+
+\subsection{1. Módulo de Energía -- Base}
+
+La ecuación original es:
+
+\[x^2+y^2-z^2+2z-2=0\]
+
+Agrupamos los términos relacionados con $z$:
+
+\[x^2+y^2-(z^2-2z)-2=0\]
+
+Completamos el cuadrado.
+
+Tenemos:
+
+\[z^2-2z\]
+
+Tomamos la mitad de $-2$:
+
+\[\frac{-2}{2}=-1\]
+
+Elevamos al cuadrado:
+
+\[(-1)^2=1\]
+
+Por lo tanto:
+
+\[z^2-2z=(z-1)^2-1\]
+
+Sustituimos:
+
+\[x^2+y^2-\left[(z-1)^2-1\right]-2=0\]
+
+Distribuimos el signo negativo:
+
+\[x^2+y^2-(z-1)^2+1-2=0\]
+
+Simplificamos:
+
+\[x^2+y^2-(z-1)^2-1=0\]
+
+Pasamos $-1$ al segundo miembro:
+
+\[\boxed{x^2+y^2-(z-1)^2=1}\]
+
+La forma estándar también puede escribirse como:
+
+\[\boxed{\frac{x^2}{1}+\frac{y^2}{1}-\frac{(z-1)^2}{1}=1}\]
+
+Como hay dos términos positivos y uno negativo, se trata de:
+
+\[\boxed{\text{Hiperboloide de una hoja}}\]
+
+Su centro es:
+
+\[\boxed{C=(0,0,1)}\]
+
+\subsection{2. Cápsula de Tripulación -- Centro}
+
+La ecuación es:
+
+\[4x^2+4y^2+z^2-8z+12=0\]
+
+Agrupamos:
+
+\[4x^2+4y^2+(z^2-8z)+12=0\]
+
+Completamos el cuadrado en $z$.
+
+Tomamos:
+
+\[\frac{-8}{2}=-4\]
+
+Elevamos al cuadrado:
+
+\[(-4)^2=16\]
+
+Entonces:
+
+\[z^2-8z=(z-4)^2-16\]
+
+Sustituimos:
+
+\[4x^2+4y^2+(z-4)^2-16+12=0\]
+
+Simplificamos:
+
+\[4x^2+4y^2+(z-4)^2-4=0\]
+
+Pasamos $-4$ al segundo miembro:
+
+\[4x^2+4y^2+(z-4)^2=4\]
+
+Dividimos entre $4$:
+
+\[\boxed{x^2+y^2+\frac{(z-4)^2}{4}=1}\]
+
+También:
+
+\[\boxed{\frac{x^2}{1^2}+\frac{y^2}{1^2}+\frac{(z-4)^2}{2^2}=1}\]
+
+Todos los términos son positivos, por lo tanto se trata de:
+
+\[\boxed{\text{Elipsoide}}\]
+
+Su centro es:
+
+\[\boxed{C=(0,0,4)}\]
+
+Sus semiejes son:
+
+\[a=1,\qquad b=1,\qquad c=2\]
+
+El rango de $z$ es:
+
+\[4-2\leq z\leq4+2\]
+
+Por lo tanto:
+
+\[\boxed{2\leq z\leq6}\]
+
+\subsection{3. Antena de Comunicaciones -- Superior}
+
+La ecuación es:
+
+\[x^2+y^2-z+6=0\]
+
+Despejamos $z$:
+
+\[-z=-x^2-y^2-6\]
+
+Multiplicamos por $-1$:
+
+\[\boxed{z=x^2+y^2+6}\]
+
+Esta ecuación corresponde a un:
+
+\[\boxed{\text{Paraboloide circular}}\]
+
+El vértice se obtiene cuando:
+
+\[x=0,\qquad y=0\]
+
+Entonces:
+
+\[z=0^2+0^2+6\]
+
+\[z=6\]
+
+Por lo tanto:
+
+\[\boxed{V=(0,0,6)}\]
+
+La superficie abre hacia:
+
+\[\boxed{+z}\]
+
+y su rango es:
+
+\[\boxed{z\geq6}\]
+
+\subsection{4. Núcleo de Procesamiento -- Punta}
+
+La ecuación es:
+
+\[x^2+y^2+z^2-16z+63.75=0\]
+
+Agrupamos los términos de $z$:
+
+\[x^2+y^2+(z^2-16z)+63.75=0\]
+
+Completamos el cuadrado.
+
+Tomamos:
+
+\[\frac{-16}{2}=-8\]
+
+Elevamos al cuadrado:
+
+\[(-8)^2=64\]
+
+Entonces:
+
+\[z^2-16z=(z-8)^2-64\]
+
+Sustituimos:
+
+\[x^2+y^2+(z-8)^2-64+63.75=0\]
+
+Calculamos:
+
+\[-64+63.75=-0.25\]
+
+Por lo tanto:
+
+\[x^2+y^2+(z-8)^2-0.25=0\]
+
+Pasamos $0.25$ al segundo miembro:
+
+\[\boxed{x^2+y^2+(z-8)^2=0.25}\]
+
+Como:
+
+\[0.25=(0.5)^2\]
+
+podemos escribir:
+
+\[\boxed{x^2+y^2+(z-8)^2=(0.5)^2}\]
+
+Esta es la ecuación de una esfera.
+
+Por lo tanto:
+
+\[\boxed{\text{Esfera}}\]
+
+Centro:
+
+\[\boxed{C=(0,0,8)}\]
+
+Radio:
+
+\[\boxed{r=0.5}\]
+
+\subsection{Resumen de las superficies}
+
+\begin{table}[H]
+\centering
+\caption{Resumen matemático de la sonda}
+\begin{tabular}{p{3.2cm} p{5cm} p{3.5cm} p{3cm}}
+\toprule
+\textbf{Pieza} &
+\textbf{Forma estándar} &
+\textbf{Superficie} &
+\textbf{Centro/Vértice}\\
+\midrule
+
+Base &
+$x^2+y^2-(z-1)^2=1$ &
+Hiperboloide de una hoja &
+$(0,0,1)$\\
+
+Cápsula &
+$x^2+y^2+\dfrac{(z-4)^2}{4}=1$ &
+Elipsoide &
+$(0,0,4)$\\
+
+Antena &
+$z=x^2+y^2+6$ &
+Paraboloide circular &
+$(0,0,6)$\\
+
+Núcleo &
+$x^2+y^2+(z-8)^2=0.25$ &
+Esfera &
+$(0,0,8)$\\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =================================================
+\section{Dominios utilizados para la reconstrucción}
+
+Para representar las diferentes piezas mediante \texttt{ContourPlot3D},
+se utilizan los siguientes rangos.
+
+\subsection{Base}
+
+\[-3\leq x\leq3\]
+
+\[-3\leq y\leq3\]
+
+\[0\leq z\leq2.5\]
+
+\subsection{Cápsula}
+
+\[-2\leq x\leq2\]
+
+\[-2\leq y\leq2\]
+
+\[2\leq z\leq6\]
+
+\subsection{Antena}
+
+\[-3\leq x\leq3\]
+
+\[-3\leq y\leq3\]
+
+\[6\leq z\leq8\]
+
+\subsection{Núcleo}
+
+\[-1\leq x\leq1\]
+
+\[-1\leq y\leq1\]
+
+\[7.5\leq z\leq8.5\]
+
+\section{Representación en Wolfram Mathematica}
+
+Para reconstruir gráficamente la sonda se utiliza la función:
+
+\[\texttt{ContourPlot3D}\]
+
+Esta función permite representar superficies tridimensionales
+a partir de sus ecuaciones.
+
+\subsection{Definición de las ecuaciones}
+
+\begin{lstlisting}
+ec_base = x^2 + y^2 - (z - 1)^2 == 1;
+
+ec_capsula = x^2 + y^2 + (z - 4)^2/4 == 1;
+
+ec_antena = z == x^2 + y^2 + 6;
+
+ec_nucleo = x^2 + y^2 + (z - 8)^2 == 0.25;
+\end{lstlisting}
+
+
+\subsection{Gráfica de la base}
+
+\begin{lstlisting}
+base = ContourPlot3D[
+   ec_base,
+   {x, -3, 3},
+   {y, -3, 3},
+   {z, 0, 2.5},
+   ContourStyle -> Directive[GrayLevel[0.3], Opacity[0.9]],
+   Mesh -> None
+   ];
+\end{lstlisting}
+
+\subsection{Gráfica de la cápsula}
+
+\begin{lstlisting}
+capsula = ContourPlot3D[
+   ec_capsula,
+   {x, -2, 2},
+   {y, -2, 2},
+   {z, 2, 6},
+   ContourStyle -> Directive[Cyan, Opacity[0.45]],
+   Mesh -> None
+   ];
+\end{lstlisting}
+
+\subsection{Gráfica de la antena}
+
+\begin{lstlisting}
+antena = ContourPlot3D[
+   ec_antena,
+   {x, -3, 3},
+   {y, -3, 3},
+   {z, 6, 8},
+   ContourStyle -> Directive[Blue, Opacity[0.75]],
+   Mesh -> None
+   ];
+\end{lstlisting}
+
+\subsection{Gráfica del núcleo}
+
+\begin{lstlisting}
+nucleo = ContourPlot3D[
+   ec_nucleo,
+   {x, -1, 1},
+   {y, -1, 1},
+   {z, 7.5, 8.5},
+   ContourStyle -> Directive[Yellow, Opacity[0.95]],
+   Mesh -> None
+   ];
+\end{lstlisting}
+
+\subsection{Mostrar toda la sonda}
+
+\begin{lstlisting}
+Show[
+ base,
+ capsula,
+ antena,
+ nucleo,
+ PlotRange -> All,
+ Boxed -> False,
+ Axes -> True,
+ AxesLabel -> {"X", "Y", "Z"}
+]
+\end{lstlisting}
+
+
+\section{Vistas de la sonda desde diferentes ángulos}
+
+El ejercicio solicita realizar capturas desde al menos cuatro
+ángulos diferentes.
+
+Para cambiar el ángulo de visualización se utiliza la opción:
+
+\[
+\texttt{ViewPoint}
+\]
+
+\subsection{Vista 1}
+
+\begin{lstlisting}
+Show[
+ base,
+ capsula,
+ antena,
+ nucleo,
+ PlotRange -> All,
+ Boxed -> False,
+ Axes -> True,
+ AxesLabel -> {"X", "Y", "Z"},
+ ViewPoint -> {2, 2, 2}
+]
+\end{lstlisting}
+
+\textbf{Captura correspondiente:}
+
+\vspace{3cm}
+
+
+\subsection{Vista 2}
+
+\begin{lstlisting}
+Show[
+ base,
+ capsula,
+ antena,
+ nucleo,
+ PlotRange -> All,
+ Boxed -> False,
+ Axes -> True,
+ AxesLabel -> {"X", "Y", "Z"},
+ ViewPoint -> {-2, 2, 2}
+]
+\end{lstlisting}
+
+\textbf{Captura correspondiente:}
+
+\vspace{3cm}
+
+\subsection{Vista 3}
+
+\begin{lstlisting}
+Show[
+ base,
+ capsula,
+ antena,
+ nucleo,
+ PlotRange -> All,
+ Boxed -> False,
+ Axes -> True,
+ AxesLabel -> {"X", "Y", "Z"},
+ ViewPoint -> {2, -2, 2}
+]
+\end{lstlisting}
+
+\textbf{Captura correspondiente:}
+
+\vspace{3cm}
+
+\subsection{Vista 4}
+
+\begin{lstlisting}
+Show[
+ base,
+ capsula,
+ antena,
+ nucleo,
+ PlotRange -> All,
+ Boxed -> False,
+ Axes -> True,
+ AxesLabel -> {"X", "Y", "Z"},
+ ViewPoint -> {-2, -2, 2}
+]
+\end{lstlisting}
+
+\textbf{Captura correspondiente:}
+
+\vspace{3cm}
+
+% =================================================
+\section{Análisis conceptual de la reconstrucción}
+
+La reconstrucción de la sonda se realizó utilizando las propiedades
+de las superficies cuadráticas.
+
+La primera ecuación:
+
+\[x^2+y^2-(z-1)^2=1\]
+
+contiene dos términos positivos y uno negativo, por lo que representa
+un hiperboloide de una hoja.
+
+La segunda:
+
+\[x^2+y^2+\frac{(z-4)^2}{4}=\]
+
+contiene tres términos positivos y representa un elipsoide.
+
+La tercera:
+
+\[z=x^2+y^2+6\]
+
+representa un paraboloide circular cuyo vértice se encuentra en
+$(0,0,6)$.
+
+Finalmente:
+
+\[x^2+y^2+(z-8)^2=0.25\]
+
+representa una esfera con centro en $(0,0,8)$ y radio $0.5$.
+
+Estas superficies pueden combinarse para representar las diferentes
+partes de la sonda espacial.
+
+
+\section{Resultados finales}
+
+\subsection{Optimización Serverless}
+
+\[\boxed{D=[0,\infty)\times[0.1,900]}\]
+
+\[\boxed{R=[0,\infty)}\]
+
+Valores faltantes de la tabla:
+
+\[\boxed{8.00,\quad8.00,\quad80.00}\]
+
+Si el tiempo se reduce a la mitad, la superficie se vuelve más plana
+respecto al eje $n$.
+
+\[\boxed{\text{Respuesta B}}\]
+
+\subsection{Raycasting}
+
+Vector dirección:
+
+\[\boxed{(2,2,2)}\]
+
+Trayectoria:
+
+\[\boxed{\vec{r}(\lambda)=(2\lambda,2\lambda,2\lambda)}\]
+
+Parámetro de impacto:
+
+\[\boxed{\lambda=0.4}\]
+
+Punto de impacto:
+
+\[\boxed{(0.8,0.8,0.8)}\]
+
+\subsection{Movimiento del personaje}
+
+Vector:
+
+\[\boxed{\vec{AB}=(3,6,3)}\]
+
+Trayectoria:
+
+\[\boxed{\vec{r}(t)=(2+3t,1+6t,3t)}\]
+
+Para el 80\%:
+
+\[\boxed{t=0.8}\]
+
+Posición:
+
+\[\boxed{(4.4,5.8,2.4)}\]
+
+\subsection{Sonda espacial}
+
+\begin{align*}
+\text{Base:}\quad
+&\boxed{x^2+y^2-(z-1)^2=1}\\[0.3cm]
+\text{Cápsula:}\quad
+&\boxed{x^2+y^2+\frac{(z-4)^2}{4}=1}\\[0.3cm]
+\text{Antena:}\quad
+&\boxed{z=x^2+y^2+6}\\[0.3cm]
+\text{Núcleo:}\quad
+&\boxed{x^2+y^2+(z-8)^2=0.25}
+\end{align*}
+
+Clasificación:
+
+\begin{itemize}
+    \item Base: hiperboloide de una hoja.
+    \item Cápsula: elipsoide.
+    \item Antena: paraboloide circular.
+    \item Núcleo: esfera.
+\end{itemize}
+
+
+\section{Conclusiones}
+
+A través de los ejercicios desarrollados se aplicaron diferentes
+conceptos de cálculo multivariable y geometría analítica en tres
+dimensiones.
+
+En el problema de optimización de costos se identificaron variables
+independientes y dependientes, además de determinar el dominio y
+rango de una función de dos variables. También se observó que una
+reducción en el tiempo de ejecución produce una reducción proporcional
+en el costo.
+
+En el problema de Raycasting se utilizó un vector dirección y una
+ecuación paramétrica para determinar el punto en el que una trayectoria
+intersecta un plano.
+
+Para el movimiento del personaje se utilizó nuevamente una ecuación
+paramétrica de una recta, permitiendo encontrar la posición del
+personaje después de recorrer un porcentaje determinado de la
+trayectoria.
+
+Finalmente, en la reconstrucción de la sonda espacial se utilizó
+el método de completar el cuadrado para transformar ecuaciones
+cuadráticas a su forma estándar. Esto permitió identificar un
+hiperboloide de una hoja, un elipsoide, un paraboloide circular y una
+esfera.
+
+La representación mediante Wolfram Mathematica permitió visualizar
+las superficies tridimensionales y combinarlas para reconstruir
+matemáticamente la estructura de la sonda.
+
+
+\section{Observaciones sobre el enunciado}
+
+Se detectaron dos inconsistencias en el material proporcionado.
+
+\subsection{Primera observación: función de costo}
+
+La función indicada en el problema es:
+
+\[C(n,t)=0.000016nt\]
+
+Sin embargo, los valores incluidos en la tabla corresponden a:
+
+\[C(n,t)=0.016nt\]
+
+Por ejemplo:
+
+\[0.016(10)(1)=0.16\]
+
+Por esta razón, para completar la tabla se utilizó $0.016nt$,
+manteniendo consistencia con los valores que aparecen en el ejercicio.
+
+\subsection{Segunda observación: ecuación del plano}
+
+El enunciado presenta:
+
+\[2x+2y+x=4\]
+
+Para un plano en tres dimensiones, la forma esperada normalmente
+sería:
+
+\[2x+2y+z=4\]
+
+Al utilizar la trayectoria:
+
+\[(x,y,z)=(2\lambda,2\lambda,2\lambda)\]
+
+ambas expresiones conducen al mismo valor:
+
+\[\lambda=0.4\]
+
+y al mismo punto de impacto:
+
+\[\boxed{(0.8,0.8,0.8)}\]
+
+Por lo tanto, el resultado del punto de impacto se mantiene.
+
+
+\end{document}
